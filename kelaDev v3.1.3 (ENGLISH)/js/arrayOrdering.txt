@@ -1,0 +1,10 @@
+manualItemInfoReturns = [titleAssembly, year, mint, chosenName, additionalNotes, isError];
+                            0             1     2       3               4            5
+
+certificationReturns = [certificationNumber, compiledGrade, compiledString, gradingCompany];
+                                0                1                  2              3    
+
+descriptionReturns = [compiledDescription];
+                                0
+
+ebayParseInformation = []

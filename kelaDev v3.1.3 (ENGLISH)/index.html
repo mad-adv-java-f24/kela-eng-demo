@@ -1,0 +1,908 @@
+<!DOCTYPE php>
+<html lang="es">
+<head>
+    <title>K.E.L.A. | v3.1.3</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- Adding Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+        crossorigin="anonymous">
+        <!-- <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous"> -->
+    <!-- Adding fontawesome Javascript -->
+    <script src="https://kit.fontawesome.com/2acfb07b39.js"
+        crossorigin="anonymous"></script>
+
+    <!-- Adding Custom Stylesheet -->
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Scripts from old KELA Version (Update Needed) -->
+    <script src="js/itemProcessing.js"></script>
+    <script src="js/itemProcessingRecords.js"></script>
+    <script src="js/manualInputs.js"></script>
+    <script src="js/copyPasteOutputs.js"></script>
+</head>
+
+<body>
+    <!-- Header Table -->
+    <table 
+        class="table table-striped"
+        width="100%"
+        style="vertical-align: middle">
+        <tbody>
+            <tr>
+                <td width="33%">
+                    <!-- Local Navigation -->
+                    <nav aria-label="breadcrumb"
+                        style="background-color: transparent !important">
+                        <ol class="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3"
+                            style="background-color: transparent !important">
+                        
+                        <!-- Home Icon -->
+                        <li class="breadcrumb-item">
+                            <a class="link-body-emphasis" href="index.html">
+                            <i class="fa-solid fa-house"></i>
+                            <span class="visually-hidden">Home</span>
+                            </a>
+                        </li>
+
+                        <!-- First Nav Uptick
+                        <li class="breadcrumb-item">
+                            <a class="link-body-emphasis fw-semibold text-decoration-none" href="#">PLACEHOLDER</a>
+                        </li> -->
+                        
+                        <!-- Current Page -->
+                        <li class="breadcrumb-item active" aria-current="page">
+                             <span class="badge bg-dark">K.E.L.A. | v3.1.3</span>
+                        </li>
+                        </ol>
+                    </nav>
+                </td>
+                <td 
+                    style="text-align: center"
+                    width="33%">
+                    <!-- Store Logo Here -->
+                    <a href="index.html">
+                        <img src="images/logo.png">
+                    </a>
+                </td>
+                <td
+                    style="text-align: right"
+                    width="33%">
+                    
+                    <!-- Abrir eBay Listings -->
+                    <a href="https://www.ebay.com/sh/lst/drafts">
+                        <button type="button" class="btn btn-dark">Open eBay</button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <!-- ============================================================================================ -->
+    <!-- EL SECTION DE FORMA -->
+
+    <table width="100%">
+        <!-- Empieza la forma -->
+        <form
+            name="itemInfo"
+            id="itemInfo"
+            method="post"
+            action=""
+            onsubmit="return processItem()";
+            onchange="return processItem()">
+
+        <!-- ROW 1 (Info de Grados, Info de Cosita, Vista Anticipada) -->
+        <tr>
+            <!-- COL 1 (Info de Grados) -->
+            <td width="33%"
+                style="padding: 0em 1em 0em 1em">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <!-- Table para Sorting las cositas -->
+                        <table width="100%">
+                            
+                            <!-- Row de Noticias! -->
+                            <tr> 
+                                <td width="10%"></td>
+                                <td width="80%"
+                                    style="text-align: center">
+                                    <!-- Titulo de Section -->
+                                    <p class="h4">Grading Info</h5>
+                                </td>
+
+                                <td width="10%"
+                                    style="text-align: right">
+
+                                    <!-- gradingEnabled SWITCH TOGGLE -->
+                                    <div class="mb-3 form-check form-switch"
+                                        style="transform: translateX(0%) translateY(40%)">
+                                        <input class="form-check-input" 
+                                            type="checkbox" 
+                                            role="switch" 
+                                            id="gradingEnabled"
+                                            name="gradingEnabled"
+                                            style="float: right"
+                                            >
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                        </table>
+
+                        <!-- Seperator Visual -->
+                        <hr>
+
+                        <!-- Table Para elegiciones -->
+                        <table width="100%">
+                            
+                            <!-- Elegir Negocio -->
+                            <tr>
+                                <!-- Title -->
+                                <td width="47%"
+                                    style="text-align: right">
+                                    <label for="gradingCompany" class="form-label">Select Company: </label>
+                                </td>
+
+                                <!-- Espacio -->
+                                <td width="5%"></td>
+                                
+                                <!-- Option -->
+                                <td width="47%"
+                                    style="text-align: left">
+                                    <select class="form-select" 
+                                        id="gradingCompany" 
+                                        name="gradingCompany">
+                                        
+                                        <option selected="">Click to select...</option>
+                                        <option value="anacs">ANACS</option>
+                                        <option value="icg">ICG</option>
+                                        <option value="ngc">NGC</option>
+                                        <option value="pcgs">PCGS</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <!-- Numero de Grado -->
+                            <tr>
+                                <!-- Title -->
+                                <td width="47%"
+                                    style="text-align: right">
+                                    <label for="gradeNumber" class="form-label">Grade #: </label>
+                                </td>
+
+                                <!-- Espacio -->
+                                <td width="5%"></td>
+                                
+                                <!-- Option -->
+                                <td width="47%"
+                                    style="text-align: left">
+                                    
+                                    <select class="form-select" 
+                                        id="gradeNumber" 
+                                        name="gradeNumber">
+                                        <option value="n/a" selected></option>
+                                        <option value="70">70</option>
+                                        <option value="69">69</option>
+                                        <option value="68">68</option>
+                                        <option value="67">67</option>
+                                        <option value="66">66</option>
+                                        <option value="65">65</option>
+                                        <option value="64">64</option>
+                                        <option value="63">63</option>
+                                        <option value="62">62</option>
+                                        <option value="61">61</option>
+                                        <option value="60">60</option>
+                                        <option value="58">58</option>
+                                        <option value="55">55</option>
+                                        <option value="53">53</option>
+                                        <option value="50">50</option>
+                                        <option value="45">45</option>
+                                        <option value="40">40</option>
+                                        <option value="35">35</option>
+                                        <option value="30">30</option>
+                                        <option value="25">25</option>
+                                        <option value="20">20</option>
+                                        <option value="15">15</option>
+                                        <option value="12">12</option>
+                                        <option value="10">10</option>
+                                        <option value="8">8</option>
+                                        <option value="6">6</option>
+                                        <option value="4">4</option>
+                                        <option value="3">3</option>
+                                        <option value="2">2</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            
+                            <!-- Estado de Grado -->
+                            <tr>
+                                <!-- Title -->
+                                <td width="47%"
+                                    style="text-align: right">
+                                    <label for="gradeState" class="form-label">Grade State: </label>
+                                </td>
+
+                                <!-- Espacio -->
+                                <td width="5%"></td>
+                                
+                                <!-- Option -->
+                                <td width="47%"
+                                    style="text-align: left">
+                                    <select class="form-select" 
+                                        id="gradeState" 
+                                        name="gradeState">
+                                        
+                                        <option value="auto" selected>Auto Detect</option>
+                                        <option value="pf">Proof</option>
+                                        <option value="ms">Mint-State</option>
+                                        <option value="au">Almost-UNC</option>
+                                        <option value="xf">Xtra-Fine</option>
+                                        <option value="vf">Very-Fine</option>
+                                        <option value="fine">Fine</option>
+                                        <option value="vg">Very-Good</option>
+                                        <option value="g">Good</option>
+                                        <option value="ag">Almost-Good</option>
+                                        <option value="fair">Fair</option>
+                                        <option value="poor">Poor</option>   
+                                    </select>
+
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <!-- Seperator Visual -->
+                        <hr>
+                        
+                        <!-- Table para Cositas Especificas -->
+                        <table width="100%"
+                            style="text-align: center">
+
+                            <!-- Header-->
+                            <tr>
+                                <td style="text-align: center"
+                                    colspan="6">
+                                    <p class="h5">Grade Specifications</p>
+                                </td>
+                            </tr>
+
+                            <!-- isDetails -->
+                                <tr>
+                                    <!-- Title -->
+                                    <td width="25%"
+                                        style="text-align: right"
+                                        style="vertical-align: top">
+
+                                        <label class="form-check-label" 
+                                            for="isDetails">Details: &nbsp</label>
+                                    </td>                                    
+                                    
+                                    <!-- Option -->
+                                    <td width="8%"
+                                        style="text-align: left">
+                                        <div class="mb-3 form-check form-switch"
+                                            style="transform: translateX(0%) translateY(40%)">
+
+                                        <input class="form-check-input" 
+                                            type="checkbox" 
+                                            role="switch" 
+                                            id="isDetails"
+                                            name="isDetails"
+                                            style="display: inline-block">
+
+                                        </div>
+                                    </td>
+                                <!-- </tr> -->
+
+                                <!-- isPlus -->
+                                <!-- <tr> -->
+                                    <!-- Title -->
+                                    <td width="25%"
+                                        style="text-align: right"
+                                        style="vertical-align: top">
+
+                                        <label class="form-check-label" 
+                                            for="isPlus">Special (+): &nbsp</label>
+                                    </td>                                    
+                                    
+                                    <!-- Option -->
+                                    <td width="8%"
+                                        style="text-align: left">
+                                        <div class="mb-3 form-check form-switch"
+                                            style="transform: translateX(0%) translateY(40%)">
+
+                                        <input class="form-check-input" 
+                                            type="checkbox" 
+                                            role="switch" 
+                                            id="isPlus"
+                                            name="isPlus"
+                                            style="display: inline-block">
+
+                                        </div>
+                                    </td>
+                                <!-- </tr> -->
+
+                                <!-- isStar -->
+                                <!-- <tr> -->
+                                    <!-- Title -->
+                                    <td width="25%"
+                                        style="text-align: right"
+                                        style="vertical-align: top">
+
+                                        <label class="form-check-label" 
+                                            for="isStar">Star (★): &nbsp</label>
+                                    </td>                                    
+                                    
+                                    <!-- Option -->
+                                    <td width="8%"
+                                        style="text-align: left">
+                                        <div class="mb-3 form-check form-switch"
+                                            style="transform: translateX(0%) translateY(40%)">
+
+                                        <input class="form-check-input" 
+                                            type="checkbox" 
+                                            role="switch" 
+                                            id="isStar"
+                                            name="isStar"
+                                            style="display: inline-block">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div> 
+                </div>
+            </td>
+
+            <!-- ROW 2 (Info de Cosita) -->
+            <td width="33%"
+                style="padding: 0em 1em 0em 1em">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <!-- Table para Sorting las cositas -->
+                        <table width="100%">
+                            
+                            <!-- Row de Noticias! -->
+                            <tr> 
+                                <td width="10%"></td>
+                                <td width="80%"
+                                    style="text-align: center">
+                                    <!-- Titulo de Section -->
+                                    <p class="h4">Item Info</h5>
+                                </td>
+
+                                <td width="10%"
+                                    style="text-align: right">
+
+                                    <!-- Pre/Post Grade SWITCH TOGGLE -->
+                                    <!-- Si enabled, La item esta después el grado -->
+                                    <div class="mb-3 form-check form-switch"
+                                        style="transform: translateX(0%) translateY(40%)">
+                                        <input class="form-check-input" 
+                                            type="checkbox" 
+                                            role="switch" 
+                                            id="postGrade"
+                                            name="postGrade"
+                                            style="float: right"
+                                            checked=""
+                                            >
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Seperator Visual -->
+                        <hr>
+
+                        <!-- Table Para elegiciones -->
+                        <table width="100%">
+                            
+                            <!-- Elegir Año -->
+                            <tr>
+                                <!-- Title -->
+                                <td width="47%"
+                                    style="text-align: right">
+                                    <label for="itemYear" 
+                                        class="form-label">Year: </label>
+                                </td>
+
+                                <!-- Espacio -->
+                                <td width="5%"></td>
+                                
+                                <!-- Option -->
+                                <td width="47%"
+                                    style="text-align: left">
+                                    <input type="number" 
+                                        class="form-control" 
+                                        aria-label=""
+                                        id="itemYear"
+                                        name="itemYear"
+                                        placeholder="e.g. 2001">
+                                </td>
+                            </tr>
+
+                            <!-- Lugar de Mint -->
+                            <tr>
+                                <!-- Title -->
+                                <td width="47%"
+                                    style="text-align: right">
+                                    <label for="itemMint" class="form-label">Mint Location: </label>
+                                </td>
+
+                                <!-- Espacio -->
+                                <td width="5%"></td>
+                                
+                                <!-- Option -->
+                                <td width="47%"
+                                    style="text-align: left">
+                                    
+                                    <select class="form-select" 
+                                        id="itemMint" 
+                                        name="itemMint">
+                                        
+                                        <option value="n/a" selected></option>
+                                        <option value="p">Philidelphia</option>
+                                        <option value="d">Denver</option>
+                                        <option value="s">San Francisco</option>
+                                        <option value="o">New Orleans</option>
+                                        <option value="cc">Carson City</option>
+                                        <option value="w">Westpoint</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            
+                            <!-- Denominación -->
+                            <tr>
+                                <!-- Title -->
+                                <td width="47%"
+                                    style="text-align: right">
+                                    <label for="itemDenomination" class="form-label">Denomination: </label>
+                                </td>
+
+                                <!-- Espacio -->
+                                <td width="5%"></td>
+                                
+                                <!-- Option -->
+                                <td width="47%"
+                                    style="text-align: left">
+                                    <select class="form-select" 
+                                        id="itemDenomination" 
+                                        name="itemDenomination">
+                                        
+                                        <option value="n/a" selected></option>
+                                        <option value="dollar">$1</option>
+                                        <option value="half">50¢</option>
+                                        <option value="quarter">25¢</option>
+                                        <option value="twenty-cent">20¢</option>
+                                        <option value="dime">10¢</option>
+                                        <option value="half-dime">5¢</option>
+                                        <option value="three-cent">3¢</option>
+                                        <option value="two-cent">2¢</option>
+                                        <option value="cent">1¢</option>
+                                        <option value="half-cent">½¢</option>
+                                    </select>
+
+                                </td>
+                            </tr>
+                            
+                            <!-- Más Info -->
+                            <tr>
+                                <!-- Title -->
+                                <td width="47%"
+                                    style="text-align: right">
+                                    <label for="itemAdditionalNotes" class="form-label">More Info: </label>
+                                </td>
+
+                                <!-- Espacio -->
+                                <td width="5%"></td>
+                                
+                                <!-- Option -->
+                                <td width="47%"
+                                    style="text-align: left">
+                                    <input type="text" 
+                                        class="form-control ponAtencion" 
+                                        aria-label=""
+                                        id="itemAdditionalNotes"
+                                        name="itemAdditionalNotes"
+                                        placeholder="Escribir algo aquí...">
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <!-- Seperator Visual -->
+                        <hr>
+                        
+                        <!-- Table para Personalizar Título -->
+                        <table width="100%"
+                            style="text-align: center">
+
+                            <!-- Header-->
+                            <tr>
+                                <td style="text-align: center">
+                                    <p class="h5">Personalize Title</p>
+                                </td>
+                            </tr>
+
+                            <!-- El Field de Text para eso -->
+                            <tr>
+                                <td>
+                                    <input type="text" 
+                                        class="form-control ponAtencion" 
+                                        aria-label=""
+                                        id="manualNameOverride"
+                                        name="manualNameOverride"
+                                        placeholder="Escribir algo aquí...">
+                                </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>
+            </td>
+
+            <!-- ROW 3 (Description de Cosita) -->
+            <td width="33%"
+            style="padding: 0em 1em 0em 1em">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <!-- Table para Sorting las cositas -->
+                    <table width="100%">
+                        
+                        <!-- Row de Noticias! -->
+                        <tr> 
+                            <td width="100%"
+                                style="text-align: center">
+                                <!-- Titulo de Section -->
+                                <p class="h4">Description</h5>
+                                
+                                <!-- Seperator Visual -->
+                                <hr>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Table Para elegiciones -->
+                    <table width="100%">
+                        
+                        <!-- Primer Nivel -->
+                        <tr>
+                            <!-- Title -->
+                            <td width="47%"
+                                style="text-align: right">
+                                <label for="tierSelect01" class="form-label">Tier One: </label>
+                            </td>
+
+                            <!-- Espacio -->
+                            <td width="5%"></td>
+                            
+                            <!-- Option -->
+                            <td width="47%"
+                                style="text-align: left">
+                                <select class="form-select" 
+                                    id="tierSelect01" 
+                                    name="tierSelect01">
+
+                                    <option value="01">[1] Awesome</option>
+                                    <option value="02" selected>[2] Great</option>
+                                    <option value="03">[3] Cool</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <!-- Primer Rasgo -->
+                        <tr>
+                            <!-- Title -->
+                            <td width="47%"
+                                style="text-align: right">
+                                <label for="traitSelect01" class="form-label">Trait One: </label>
+                            </td>
+
+                            <!-- Espacio -->
+                            <td width="5%"></td>
+                            
+                            <!-- Option -->
+                            <td width="47%"
+                                style="text-align: left">
+                                
+                                <select class="form-select" 
+                                    id="traitSelect01" 
+                                    name="traitSelect01">
+
+                                    <option value="n/a"></option>
+                                    <option value="character" selected>Character</option>
+                                    <option value="colour">Colour</option>
+                                    <option value="details">Details</option>
+                                    <option value="era">Era</option>
+                                    <option value="errorPiece">Error</option>
+                                    <option value="features">Features</option>
+                                    <option value="fewMarks">Few Marks</option>
+                                    <option value="historicValue">Historic Value</option>
+                                    <option value="luster">Luster</option>
+                                    <option value="obverse">Obverse</option>
+                                    <option value="patina">Patina</option>
+                                    <option value="qualities">Qualities</option>
+                                    <option value="reverse">Reverse</option>
+                                    <option value="hairline">Some Hairlines</option>
+                                    <option value="strike">Strike</option>
+                                    <option value="surfaces">Surfaces</option>
+                                    <option value="toning">Toning</option>
+                                    <option value="wornSurfaces">Worn Surfaces</option>
+                                </select>
+                            </td>
+                        </tr>
+                        
+                        <!-- Segundo Nivel -->
+                        <tr>
+                            <!-- Title -->
+                            <td width="47%"
+                                style="text-align: right">
+                                <label for="tierSelect02" class="form-label">Tier Two: </label>
+                            </td>
+
+                            <!-- Espacio -->
+                            <td width="5%"></td>
+                            
+                            <!-- Option -->
+                            <td width="47%"
+                                style="text-align: left">
+                                <select class="form-select" 
+                                    id="tierSelect02" 
+                                    name="tierSelect02">
+                                    
+                                    <option value="01">[1] Awesome</option>
+                                    <option value="02" selected>[2] Great</option>
+                                    <option value="03">[3] Cool</option>
+                                </select>
+
+                            </td>
+                        </tr>
+                        
+                        <!-- Segundo Rasgo -->
+                        <tr>
+                            <!-- Title -->
+                            <td width="47%"
+                                style="text-align: right">
+                                <label for="traitSelect02" class="form-label">Trait Two: </label>
+                            </td>
+
+                            <!-- Espacio -->
+                            <td width="5%"></td>
+                            
+                            <!-- Option -->
+                            <td width="47%"
+                                style="text-align: left">
+                                <select class="form-select" 
+                                    id="traitSelect02" 
+                                    name="traitSelect02">
+
+                                    <option value="n/a"></option>
+                                    <option value="character">Character</option>
+                                    <option value="colour">Colour</option>
+                                    <option value="details">Details</option>
+                                    <option value="era">Era</option>
+                                    <option value="errorPiece">Error</option>
+                                    <option value="features">Features</option>
+                                    <option value="fewMarks">Few Marks</option>
+                                    <option value="historicValue">Historic Value</option>
+                                    <option value="luster">Luster</option>
+                                    <option value="obverse">Obverse</option>
+                                    <option value="patina">Patina</option>
+                                    <option value="qualities" selected>Qualities</option>
+                                    <option value="reverse">Reverse</option>
+                                    <option value="hairline">Some Hairlines</option>
+                                    <option value="strike">Strike</option>
+                                    <option value="surfaces">Surfaces</option>
+                                    <option value="toning">Toning</option>
+                                    <option value="wornSurfaces">Worn Surfaces</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <!-- Seperator Visual -->
+                    <hr>
+                    
+                    <!-- Table para Personalizar Título -->
+                    <table width="100%"
+                        style="text-align: center">
+
+                        <!-- Header-->
+                        <tr>
+                            <td style="text-align: center">
+                                <p class="h5">Additional Info</p>
+                            </td>
+                        </tr>
+
+                        <!-- El Field de Text para eso -->
+                        <tr>
+                            <td>
+                                <input type="text" 
+                                    class="form-control ponAtencion" 
+                                    aria-label=""
+                                    id="descAdditionalNotes"
+                                    name="descAdditionalNotes"
+                                    placeholder="Escribir algo aquí...">
+                            </td>
+                        </tr>
+                    </table>
+                </div> 
+            </div>
+        </td>
+        </tr>
+    </table>
+
+<!-- Le Da espacio para respirar -->
+<br>
+
+    <!-- NEW LINE TABLE (Vista Anticipada & COPIAR)  -->
+    <table width="100%">
+        <tr>
+            <!-- VISTA ANTICIPADA -->
+            <td width="70%"
+                style="padding: 0em 1em 0em 1em">
+                <div class="card">
+                    <div class="card-body">
+                        
+                    <!-- Table para Sorting las cositas -->
+                    <table width="100%">
+                        
+                        <!-- Row de Noticias! -->
+                        <tr> 
+                            <td width="100%"
+                                style="text-align: center">
+                                <!-- Titulo de Section -->
+                                <p class="h4">Listing Preview</h5>
+                                
+                                <!-- Seperator Visual -->
+                                <hr>
+                            </td>
+                        </tr>
+                        
+                        <!-- Row of Informations -->
+                        <tr>
+                            <td>
+                                <!-- Mini Table (2colx3row) -->
+                                <table width="100%">
+                                    <tr>
+                                        <!-- Image Preview (2 Rows) -->
+                                        <td rowspan="2"
+                                            width="20%">
+
+                                            <!-- The Image Filler (Remove preview image, was for dev test) -->
+                                            <div id="previewItemImage"
+                                                style="float: left">
+                                                <img height="125px" width="125px" src="images/inventory/defaultPreview.png">
+                                            </div>
+                                        </td>
+
+                                        <!-- The preview título & Item Desc-->
+                                        <td width="80%">
+                                            <!-- Título -->
+                                            <p class="h5"
+                                                id="previewItemTitle">2001-K KINDRAI DOLLAR</p>
+
+                                            <!-- DescripciÓn -->
+                                            <p class="lead"
+                                                id="previewItemDescription">
+                                                Super Cool. So Epic.
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 2 (Confirm Item Selection) -->
+                                    <tr>
+                                        <td width="80%">
+                                            <section id="itemOptionSelect">
+
+                                            </section>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 3 () -->
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    
+                    </div>
+                </div>
+            </td>
+
+            <!-- Javascript to detect when form elements in Div changes -->
+            <script>
+                // Get all elements matching the selector and iterate over each one
+                document.querySelectorAll("div.card, div.card-body").forEach(function(element) {
+                    // Attach the 'change' event listener to each element
+                    element.addEventListener('change', function(event) {
+                    // Check if the target is either an INPUT or SELECT element
+                    if (event.target.tagName === 'INPUT' || event.target.tagName === 'SELECT') {
+                        processItem();
+                    }
+                    });
+                });
+            </script>
+
+
+            <!-- COPIAR -->
+            <td width="30%"
+                style="padding: 0em 1em 0em 1em">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Table para Sorting las cositas -->
+                    <table width="100%"
+                    style="margin-left: auto"
+                    style="margin-right: auto" >
+                        
+                        <!-- Row de Noticias! -->
+                        <tr> 
+                            <td width="100%"
+                                style="text-align: center">
+                                
+                                <!-- Titulo de Section -->
+                                <p class="h4">Copy</h5>
+                                
+                                <!-- Seperator Visual -->
+                                <hr>
+                            </td>
+                        </tr>
+
+                        <!-- Copiar Título -->
+                        <tr>
+                            <td>
+                                <button type="button" 
+                                    class="btn btn-success"
+                                    onclick="copyTitleToClipboard()" 
+                                    id = 'titleCopy'
+                                    style="width: 100%">Title</button>
+                            </td>
+                        </tr>
+
+                        <!-- Copiar Descripción -->
+                        <tr>
+                            <td>
+                                <button type="button" 
+                                    class="btn btn-warning"
+                                    onclick="copyDescriptionToClipboard()" 
+                                    id = 'descriptionCopy'
+                                    style="width: 100%">Description</button>
+                            </td>
+                        </tr>
+
+                        <!-- Copiar Codigo -->
+                        <tr>
+                            <td>
+                                <button type="button" 
+                                    class="btn btn-danger"
+                                    onclick="copyHTMLDescToClipboard()" 
+                                    id = 'HTMLDescriptionCopy'
+                                    style="width: 100%">HTML</button>
+                            </td>
+                        </tr>
+                    </table>           
+
+                    
+
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        </form>
+    </table>
+
+
+</body>
+
+
+
+</html>
